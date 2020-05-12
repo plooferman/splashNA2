@@ -2,7 +2,9 @@ package com.example.splashna;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
@@ -34,7 +36,23 @@ public class MainActivity extends AppCompatActivity {
         escalaAnimacion();
         YoYo.with(Techniques.FadeIn).duration(4000).playOn(noticiasArgentinas);
 
+        new Handler().postDelayed(new Runnable() {
+
+
+            @Override
+            public void run() {
+                // This method will be executed once the timer is over
+                Intent intent = new Intent(MainActivity.this, VozATextoActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 5000);
     }
+
+
+
+
+
 
     private void rotarAnimacion(){
         animationGrupo = AnimationUtils.loadAnimation(this, R.anim.rotate);
@@ -47,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         animarionElipse.setDuration(3500);
         elipse.startAnimation(animarionElipse);
     }
+
+
 
     }
 
